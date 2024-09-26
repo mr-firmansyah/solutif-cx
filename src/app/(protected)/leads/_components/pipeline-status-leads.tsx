@@ -12,10 +12,10 @@ export default function PipelineStatusLeads({ data }: PipelineLeadsProps) {
   return (
     <Pipeline current={current}>
       {pipeline
-        .sort((a, b) => a.sequence - b.sequence) // Sort by sequence to keep the order
+        .sort((a, b) => a.sequence - b.sequence)
         .map((step) => (
           <PipelineItem key={step.sequence}>
-            <PipelineTrigger sequence={step.sequence} name={step.name} />
+            <PipelineTrigger name={step.name} sequence={step.sequence} />
           </PipelineItem>
         ))}
     </Pipeline>

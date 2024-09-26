@@ -48,4 +48,6 @@ interface LoginResponse {
 type UserResponse = ApiResponse<LoginResponse>;
 type TicketsResponse = PaginatedApiResponse<TicketListResponse>;
 type ContactsResponse = PaginatedApiResponse<ContactListResponse>;
+
 type LeadsDetailsResponse = ApiResponse<LeadsDetails>;
+type LeadsResponse = PaginatedApiResponse<LeadsListResponse>;

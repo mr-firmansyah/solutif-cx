@@ -1,10 +1,16 @@
 import { cookies } from "next/headers";
+import dynamic from "next/dynamic";
 
 import { useFetch as ky } from "@/hooks/use-fetch";
 import { Shell } from "@/components/ui/shell";
+import { Skeleton } from "@/components/ui/skeleton";
+
 import { ProfileSection } from "../../_components/detail-profile-section";
 import { CampaignSection } from "../../_components/detail-campaign-section";
+import { DetailTabs } from "../../_components/detail-tabs";
 import PipelineStatusLeads from "../../_components/pipeline-status-leads";
+
+const ConvertLeadsModal = dynamic(() => import("../../_components/convert-leads"), { ssr: false, loading: () => <Skeleton className="w-full h-9" /> });
 
 // NOTE: It's better to globally define this extended ky instance for v2 API isn't it?
 // So we don't have to repeat this in every file
@@ -22,19 +28,24 @@ export default async function LeadsDetailPage({ params }: LeadsDetailPageProps) 
 
   // NOTE: This should redirect to the error page
   // TODO: Later on, we will add a custom error page
-  // eg. redirect('/error', { statusCode: 404 });
+  // TODO: eg. redirect('/error', { statusCode: 404 });
   if (error) {
     throw error;
   }
 
   return (
-    <Shell className="gap-2" label="Leads">
+    <Shell className="gap-4" label="Leads">
       <PipelineStatusLeads data={data} />
-      <div className="flex gap-4">
-        <ProfileSection data={data} className="w-5/12" />
-        <CampaignSection data={data} className="w-full" />
+
+      <div className="flex flex-col md:flex-row gap-4">
+        <ProfileSection className="md:w-5/12" data={data}>
+          <ConvertLeadsModal />
+        </ProfileSection>
+        <CampaignSection className="w-full" data={data} />
       </div>
-      <pre>{JSON.stringify(data, null, 2)}</pre>
+
+      <DetailTabs data={data} />
+      {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
     </Shell>
   );
 }

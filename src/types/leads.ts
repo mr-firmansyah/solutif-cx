@@ -1,3 +1,12 @@
+interface LeadsListResponse extends Timestamps {
+  id: string;
+  lead_number: string;
+  name: string;
+  phone_number: string;
+  email: string;
+  status: string;
+}
+
 interface LeadsDetails {
   id: string;
   name: string;
@@ -9,6 +18,9 @@ interface LeadsDetails {
   bio: Bio;
   address: Address;
   campaign: Campaign;
+  additional_information: {
+    [key: string]: string;
+  }
 }
 
 type PipelineStatus = {

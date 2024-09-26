@@ -4,7 +4,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const shellVariants = cva(
-  "grid items-center gap-8 pb-8 pt-6 md:py-8 mx-auto px-4",
+  "grid items-center gap-8 pb-8 pt-6 md:py-4 mx-auto px-4",
   {
     variants: {
       variant: {

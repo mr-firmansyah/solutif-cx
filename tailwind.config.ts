@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import plugin from "tailwindcss/plugin";
 
 const config: Config = {
     darkMode: ["class"],
@@ -9,6 +10,14 @@ const config: Config = {
   ],
   theme: {
   	extend: {
+			clipPath: {
+				arrow: 'polygon(0% 0%, 100% 0%, 90% 50%, 100% 100%, 0% 100%)',
+				'first-arrow': 'polygon(0% 0%, 100% 0%, 90% 50%, 100% 100%, 0% 100%)',
+				'last-arrow': 'polygon(0% 0%, 100% 0%, 100% 100%, 10% 50%)'
+			},
+			filter: {
+				round: 'url(#round)'
+			},
   		backgroundImage: {
   			'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
   			'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))'
@@ -84,6 +93,18 @@ const config: Config = {
   		}
   	}
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"), plugin(function({ addComponents }) {
+		addComponents({
+			'.arrow': {
+				clipPath: 'polygon(0px 0px, calc(100% - 0.8em) 0, 100% 50%, calc(100% - 0.8em) 100%, 0px 100%, 0.8em 50%)'
+			},
+			'.first-arrow': {
+				clipPath: 'polygon(0px 0px, calc(100% - 0.8em) 0, 100.00% 50%, calc(100% - 0.8em) 100%, 0px 100%)'
+			},
+			'.last-arrow': {
+				clipPath: 'polygon(0 0,100% 0,100% 100%,0 100%, 0.8em 50%)'
+			},
+		})
+	})],
 };
 export default config;

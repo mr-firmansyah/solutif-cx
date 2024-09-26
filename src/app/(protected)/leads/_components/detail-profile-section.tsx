@@ -6,19 +6,22 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
+import { cn } from "@/lib/utils";
 
 interface ProfileSectionProps {
   data: LeadsDetails;
   className?: string;
+  children?: React.ReactNode;
 }
 
-export const ProfileSection = ({ data, className }: ProfileSectionProps) => {
+export const ProfileSection = ({ data, className, children }: ProfileSectionProps) => {
   return (
-    <section id="profile-section" className={className}>
-      <Card className="shadow-none">
+    <section className={cn("flex flex-col gap-2", className)} id="profile-section">
+      {children}
+      <Card className="shadow-none rounded-md">
         <CardHeader className="flex-row space-x-2 capitalize">
           <Avatar>
-            <AvatarImage src={undefined} alt={data.name} />
+            <AvatarImage alt={data.name} src={undefined} />
             <AvatarFallback>{data.name[0]}</AvatarFallback>
           </Avatar>
           <div className="flex flex-col items-stretch">
@@ -27,7 +30,7 @@ export const ProfileSection = ({ data, className }: ProfileSectionProps) => {
           </div>
         </CardHeader>
         <CardContent>
-          <section id="bio" className="grid grid-cols-2 gap-4 capitalize pb-4 border-b">
+          <section className="grid grid-cols-2 gap-4 capitalize pb-4 border-b" id="bio">
             <div className="col-span-2 font-semibold text-sm">Bio</div>
             <div className="col-span-1 flex flex-col gap-2">
               <p className="text-muted-foreground text-xs">Tempat Lahir</p>
@@ -83,7 +86,7 @@ export const ProfileSection = ({ data, className }: ProfileSectionProps) => {
                 </div>
               </AccordionTrigger>
               <AccordionContent>
-                <section id="address" className="grid grid-cols-2 gap-4 capitalize">
+                <section className="grid grid-cols-2 gap-4 capitalize" id="address">
                   <div className="col-span-1 flex flex-col gap-2">
                     <p className="text-muted-foreground text-xs">Alamat KTP</p>
                     <p className="text-sm">{data?.address?.ktp_address || "-"}</p>
@@ -103,7 +106,7 @@ export const ProfileSection = ({ data, className }: ProfileSectionProps) => {
                 </div>
               </AccordionTrigger>
               <AccordionContent>
-                <section id="address" className="grid grid-cols-2 gap-4 capitalize">
+                <section className="grid grid-cols-2 gap-4 capitalize" id="address">
                   <div className="col-span-2 flex flex-col gap-2">
                     <p className="text-muted-foreground text-xs">Alamat KTP</p>
                     <p className="text-sm">{data?.address?.ktp_address || "-"}</p>

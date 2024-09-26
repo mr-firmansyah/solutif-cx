@@ -2,6 +2,9 @@
 
 import { createContext, useContext, ReactNode } from "react";
 
+import PipelineMiddle from "../svg/middle-pipeline";
+import PipelineStart from "../svg/start-pipeline";
+
 interface PipelineContextType {
   currentStep: number;
 }
@@ -16,7 +19,7 @@ interface PipelineProps {
 export function Pipeline({ children, current }: PipelineProps) {
   return (
     <PipelineContext.Provider value={{ currentStep: current }}>
-      <div className="flex items-center">
+      <div className="flex items-center space-x-4 overflow-x-auto">
         {children}
       </div>
     </PipelineContext.Provider>
@@ -29,7 +32,7 @@ interface PipelineItemProps {
 
 export function PipelineItem({ children }: PipelineItemProps) {
   return (
-    <div className="relative flex items-center justify-center px-4 text-white flex-1">
+    <div className="relative flex items-center justify-center text-white flex-1 capitalize">
       {children}
     </div>
   );
@@ -50,12 +53,18 @@ export function PipelineTrigger({ sequence, name, onClick }: PipelineTriggerProp
   const { currentStep } = context;
 
   return (
-    <button
-      onClick={onClick}
-      className={`first-ribbon px-4 py-2 text-center flex-1 ${sequence <= currentStep ? "bg-green-500" : "bg-gray-200"
-        } ${sequence === currentStep ? "bg-blue-500" : ""}`}
-    >
-      {name}
-    </button>
+    sequence === 0 ? (
+      <PipelineStart
+        borderColor={sequence <= currentStep ? "#D2D6DC" : "#263238"}
+        color={sequence <= currentStep ? "white" : "#ECEFF1"}
+        text={name}
+      />
+    ) : (
+      <PipelineMiddle
+        borderColor={sequence <= currentStep ? "#D2D6DC" : "#263238"}
+        color={sequence <= currentStep ? "white" : "#ECEFF1"}
+        text={name}
+      />
+    )
   );
 }

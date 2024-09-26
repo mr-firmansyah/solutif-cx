@@ -1,6 +1,13 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { format } from "date-fns";
 import { Megaphone } from "lucide-react";
+
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
 
 interface CampaignSectionProps {
   data: LeadsDetails;
@@ -10,7 +17,7 @@ interface CampaignSectionProps {
 export const CampaignSection = ({ data, className }: CampaignSectionProps) => {
   return (
     <div className={className}>
-      <Card className="shadow-none">
+      <Card className="shadow-none rounded-md">
         <CardHeader className="flex-row space-x-2 capitalize items-center">
           <Megaphone className="w-8 h-8" />
           <div className="flex flex-col items-stretch">
@@ -19,7 +26,7 @@ export const CampaignSection = ({ data, className }: CampaignSectionProps) => {
           </div>
         </CardHeader>
         <CardContent>
-          <section id="campaign" className="grid grid-cols-2 gap-4 capitalize font-bold text-sm">
+          <section className="grid grid-cols-2 gap-4 capitalize font-bold text-sm pb-4 border-b" id="campaign">
             <div className="col-span-1 flex flex-col gap-2">
               <p>Kategori Campaign</p>
               <p className="font-normal text-muted-foreground">{data?.campaign?.category || "-"}</p>
@@ -45,10 +52,30 @@ export const CampaignSection = ({ data, className }: CampaignSectionProps) => {
               <p className="font-normal text-muted-foreground normal-case">{data?.campaign?.script || "-"}</p>
             </div>
           </section>
+
+          <Accordion collapsible type="single">
+            <AccordionItem value='additionalInfo'>
+              <AccordionTrigger>
+                <div className="flex items-center justify-between">
+                  <h2>Informasi Tambahan</h2>
+                </div>
+              </AccordionTrigger>
+              <AccordionContent>
+                <section className="grid grid-cols-2 gap-4" id="additional-info">
+                  {data?.additional_information ? Object.keys(data.additional_information).map((key) => (
+                    <div className="col-span-2 flex flex-col gap-2" key={key}>
+                      <p>{key.split("_").map((k) => k.charAt(0).toUpperCase() + k.slice(1)).join(" ")}</p>
+                      <p className="font-normal text-muted-foreground">{data.additional_information[key] || "-"}</p>
+                    </div>
+                  )) : "-"}
+                </section>
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
         </CardContent>
       </Card>
 
-      <div id="timestamps-campaign" className="text-xs text-muted-foreground mt-4">
+      <div className="text-xs text-muted-foreground mt-4" id="timestamps-campaign">
         <table className="table-auto">
           <tbody>
             <tr>

@@ -1,8 +1,12 @@
-import * as zod from 'zod';
+import { z } from 'zod';
 
-export const LoginSchema = zod.object({
-  email: zod.string().email({
+import { TaskSchema } from './task';
+
+const LoginSchema = z.object({
+  email: z.string().email({
     message: 'Email is required',
   }),
-  password: zod.string().min(1, { message: 'Password is required' }),
+  password: z.string().min(1, { message: 'Password is required' }),
 });
+
+export { LoginSchema, TaskSchema };
