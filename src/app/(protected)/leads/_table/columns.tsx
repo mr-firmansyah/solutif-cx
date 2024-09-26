@@ -10,13 +10,6 @@ interface LeadsColumnProps {
   actions?: DataTableRowAction<LeadsListResponse>[];
 }
 
-// "id": "5bf1fb93-248f-46a8-a55e-f3f0bba11cba",
-//                 "lead_number": "4553634",
-//                 "name": "nama jeff",
-//                 "phone_number": "089687913915",
-//                 "email": "g@gg.com",
-//                 "status": "closed"
-
 export function getColumns({ actions }: LeadsColumnProps = {}): ColumnDef<LeadsListResponse>[] {
   return [
     {
