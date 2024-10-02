@@ -7,16 +7,16 @@ import Link from "next/link";
 import { DataTableRowAction } from "@/types";
 
 export type Ticket = {
-  ticket_code: string;
+  ticketCode: string;
   title: string;
   status: "New" | "In Progress" | "Resolved" | "Reopen" | "Closed";
   label: string;
   priority: "Critical" | "High" | "Medium" | "Low";
-  target_resolution_date: string;
-  company_name: string;
-  project_name: string;
-  contact_name: string;
-  request_date: string;
+  targetResolutionDate: string;
+  companyName: string;
+  projectName: string;
+  contactName: string;
+  requestDate: string;
 };
 
 interface TicketsColumnProps {
@@ -26,7 +26,7 @@ interface TicketsColumnProps {
 export function getColumns({ actions }: TicketsColumnProps = {}): ColumnDef<Ticket>[] {
   return [
     {
-      accessorKey: "ticket_code",
+      accessorKey: "ticketCode",
       header: "Ticket No",
       cell: ({ row }) => (
         <Link
@@ -42,15 +42,15 @@ export function getColumns({ actions }: TicketsColumnProps = {}): ColumnDef<Tick
       header: "Priority",
     },
     {
-      accessorKey: "target_resolution_date",
+      accessorKey: "targetResolutionDate",
       header: "Due Date",
     },
     {
-      accessorKey: "company_name",
+      accessorKey: "companyName",
       header: "Company Name",
     },
     {
-      accessorKey: "project_name",
+      accessorKey: "projectName",
       header: "Project Name",
     },
     {
@@ -63,11 +63,11 @@ export function getColumns({ actions }: TicketsColumnProps = {}): ColumnDef<Tick
       ),
     },
     {
-      accessorKey: "contact_name",
+      accessorKey: "contactName",
       header: "Contact Name",
     },
     {
-      accessorKey: "request_date",
+      accessorKey: "requestDate",
       header: "Request Date",
     },
     // {

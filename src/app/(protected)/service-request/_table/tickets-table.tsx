@@ -37,7 +37,7 @@ export default function TicketsTable({ ticketsPromise, actions }: TicketsTablePr
   const filterFields: DataTableFilterField<Ticket>[] = [
     {
       label: "Ticket",
-      value: "ticket_code",
+      value: "ticketCode",
       placeholder: "Filter ticket code...",
     },
   ];

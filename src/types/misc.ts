@@ -1,7 +1,7 @@
 interface LogsList extends Timestamps {
   id: string;
-  reference_name: string;
-  reference_id: string;
+  referenceName: string;
+  referenceId: string;
   actor: string;
   action: string;
   module: string[];
@@ -14,20 +14,20 @@ interface LogsList extends Timestamps {
   date: string;
 }
 
-interface AttacmentsList extends Timestamps {
+interface AttachmentsList extends Timestamps {
   id: string;
-  model_id: string;
-  model_type: string;
-  file_name: string;
-  file_size: string;
-  file_type: string;
-  file_url: string;
+  modelId: string;
+  modelType: string;
+  fileName: string;
+  fileSize: string;
+  fileType: string;
+  fileUrl: string;
   description: string;
 }
 
 type SearchParams = {
-  per_page: number;
+  perPage: number;
   page: number;
-  date_from: string;
-  date_to: string;
+  dateFrom: string;
+  dateTo: string;
 }

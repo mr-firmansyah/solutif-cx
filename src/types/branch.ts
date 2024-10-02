@@ -1,10 +1,10 @@
 interface BranchList extends Timestamps {
   id: string;
-  branch_code: string;
-  branch_name: string;
-  nama_kota: string;
+  branchCode: string;
+  branchName: string;
+  namaKota: string;
   provinsi: string;
-  kode_pos: string;
+  kodePos: string;
   alamat: string;
-  has_deleted: boolean;
+  hasDeleted: boolean;
 }

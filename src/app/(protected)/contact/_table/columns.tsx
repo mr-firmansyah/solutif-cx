@@ -33,15 +33,15 @@ export function getColumns({ actions }: ContactsColumnProps = {}): ColumnDef<Con
       header: "Account Name",
     },
     {
-      accessorKey: "contact_numbers",
+      accessorKey: "contactNumbers",
       header: "Phone Number",
     },
     {
-      accessorKey: "lifecycle_stage",
+      accessorKey: "lifecycleStage",
       header: "Status",
       cell: ({ row }) => (
         <span className="px-2 py-1 text-xs font-semibold text-white bg-gray-500 rounded-full">
-          {row.getValue("lifecycle_stage")}
+          {row.getValue("lifecycleStage")}
         </span>
       ),
     },

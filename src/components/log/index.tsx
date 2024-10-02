@@ -13,7 +13,7 @@ export function LogComponent({ logs }: LogComponentProps) {
       {logs?.data.data.map((log) => (
         <article
           className="flex flex-col md:flex-row gap-2 md:gap-8 mt-4 font-normal text-sm"
-          key={log?.id + log?.created_at}
+          key={log?.id + log?.createdAt}
         >
           <p className="text-muted-foreground min-w-44">
             {format(new Date(log?.date), "eee, dd MMM yyy hh:mm:ss")}

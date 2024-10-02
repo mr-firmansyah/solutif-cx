@@ -30,8 +30,8 @@ const SchedulesComponent: React.FC<CalendarProps> = ({ date, tasks }) => {
       );
 
       const eventData = {
-        start_time: event.start_time,
-        end_time: event.end_time,
+        start_time: event.startTime,
+        end_time: event.endTime,
         description: event.description || "",
       };
 
@@ -117,7 +117,7 @@ const CalendarEventView: React.FC<CalendarEventViewProps> = ({
               return (
                 <div
                   className="absolute left-16 bg-primary/90 text-primary-foreground p-2 mb-2 rounded w-3/4 shadow-md"
-                  key={index}
+                  key={event.start_time + event.end_time + event.description}
                   style={{
                     top: `${topPosition}%`,
                     height: `${height}%`,

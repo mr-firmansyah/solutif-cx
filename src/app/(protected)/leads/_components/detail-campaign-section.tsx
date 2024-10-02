@@ -22,8 +22,8 @@ export const CampaignSection = ({ data, className }: CampaignSectionProps) => {
         <CardHeader className="flex-row space-x-2 capitalize items-center">
           <Megaphone className="w-8 h-8" />
           <div className="flex flex-col items-stretch">
-            <CardTitle>{data?.campaign?.campaign_name}</CardTitle>
-            <CardDescription className="text-xs">{data.lead_no}</CardDescription>
+            <CardTitle>{data?.campaign?.campaignName}</CardTitle>
+            <CardDescription className="text-xs">{data.leadNo}</CardDescription>
           </div>
         </CardHeader>
         <CardContent>
@@ -38,11 +38,11 @@ export const CampaignSection = ({ data, className }: CampaignSectionProps) => {
             </div>
             <div className="col-span-1 flex flex-col gap-2 capitalize">
               <p>Plan Start</p>
-              <p className="font-normal text-muted-foreground">{format(data?.campaign?.plan_start_date, "dd/MM/yyyy | HH:mm:ss") || "-"}</p>
+              <p className="font-normal text-muted-foreground">{format(data?.campaign?.planStartDate, "dd/MM/yyyy | HH:mm:ss") || "-"}</p>
             </div>
             <div className="col-span-1 flex flex-col gap-2">
               <p>Target Close Date</p>
-              <p className="font-normal text-muted-foreground">{format(data?.campaign?.target_close_date, "dd/MM/yyyy | HH:mm:ss") || "-"}</p>
+              <p className="font-normal text-muted-foreground">{format(data?.campaign?.targetCloseDate, "dd/MM/yyyy | HH:mm:ss") || "-"}</p>
             </div>
             <div className="col-span-2 flex flex-col gap-2">
               <p>Brief</p>
@@ -63,10 +63,10 @@ export const CampaignSection = ({ data, className }: CampaignSectionProps) => {
               </AccordionTrigger>
               <AccordionContent>
                 <section className="grid grid-cols-2 gap-4" id="additional-info">
-                  {data?.additional_information ? Object.keys(data.additional_information).map((key) => (
+                  {data?.additionalInformation ? Object.keys(data.additionalInformation).map((key) => (
                     <div className="col-span-2 flex flex-col gap-2" key={key}>
                       <p>{key.split("_").map((k) => k.charAt(0).toUpperCase() + k.slice(1)).join(" ")}</p>
-                      <p className="font-normal text-muted-foreground">{data.additional_information[key] || "-"}</p>
+                      <p className="font-normal text-muted-foreground">{data.additionalInformation[key] || "-"}</p>
                     </div>
                   )) : "-"}
                 </section>
@@ -82,12 +82,12 @@ export const CampaignSection = ({ data, className }: CampaignSectionProps) => {
             <tr>
               <td>Created</td>
               <td>:</td>
-              <td>{format(data?.campaign?.created_at, "MMMM, dd, yyyy, h:mmaaa") + " • " + (data?.campaign?.created_by || "-") }</td>
+              <td>{format(data?.campaign?.createdAt, "MMMM, dd, yyyy, h:mmaaa") + " • " + (data?.campaign?.createdBy || "-") }</td>
             </tr>
             <tr>
               <td>Updated</td>
               <td>:</td>
-              <td>{format(data?.campaign?.updated_at, "MMMM, dd, yyyy, h:mmaaa") + " • " + (data?.campaign?.updated_by || "-") }</td>
+              <td>{format(data?.campaign?.updatedAt, "MMMM, dd, yyyy, h:mmaaa") + " • " + (data?.campaign?.updatedBy || "-") }</td>
             </tr>
           </tbody>
         </table>

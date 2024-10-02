@@ -3,9 +3,7 @@
 import { cookies } from "next/headers";
 
 import { GetTicketsSchema } from "@/app/(protected)/service-request/_table/validations";
-import { useFetch as ky } from "@/hooks/use-fetch";
-
-const api = (tenant: string) => ky(tenant);
+import { useFetch as api } from "@/hooks/use-fetch";
 
 export const getTickets = async (input: GetTicketsSchema) => {
   const tenant = cookies().get('tenant')?.value || "";

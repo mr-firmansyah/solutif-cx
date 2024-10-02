@@ -2,10 +2,10 @@ import * as z from "zod"
 
 export const searchParamsSchema = z.object({
   page: z.coerce.number().default(1),
-  per_page: z.coerce.number().default(5),
-  ticket_code: z.string().optional(),
-  date_from: z.string().optional(),
-  date_to: z.string().optional(),
+  perPage: z.coerce.number().default(5),
+  ticketCode: z.string().optional(),
+  dateFrom: z.string().optional(),
+  dateTo: z.string().optional(),
 })
 
 export const getTicketsSchema = searchParamsSchema

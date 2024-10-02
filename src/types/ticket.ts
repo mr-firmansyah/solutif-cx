@@ -1,18 +1,18 @@
 interface TicketListResponse extends Timestamps {
-  assignee_data: string;
-  ticket_id: string;
-  ticket_code: string;
+  assigneeData: string;
+  ticketId: string;
+  ticketCode: string;
   subject: string;
   description: string;
   priority: string;
   status: number;
-  target_resolution_date: string;
+  targetResolutionDate: string;
   company: {
-    company_id: string;
+    companyId: string;
     name: string;
   };
   project: {
-    project_id: string;
+    projectId: string;
     name: string;
   };
   contact: {
@@ -20,7 +20,7 @@ interface TicketListResponse extends Timestamps {
     name: string;
   };
   category: {
-    category_id: string;
+    categoryId: string;
     name: string;
   };
 }

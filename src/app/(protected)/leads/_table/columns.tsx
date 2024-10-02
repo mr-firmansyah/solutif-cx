@@ -13,7 +13,7 @@ interface LeadsColumnProps {
 export function getColumns({ actions }: LeadsColumnProps = {}): ColumnDef<LeadsListResponse>[] {
   return [
     {
-      accessorKey: "lead_number",
+      accessorKey: "leadNumber",
       header: "Leads Number",
       cell: ({ row, column }) => (
         <Link
@@ -29,15 +29,15 @@ export function getColumns({ actions }: LeadsColumnProps = {}): ColumnDef<LeadsL
       header: "Nama",
     },
     {
-      accessorKey: "lead_type",
+      accessorKey: "leadType",
       header: "Tipe Leads",
     },
     {
-      accessorKey: "campaign_name",
+      accessorKey: "campaignName",
       header: "Nama Campaign",
     },
     {
-      accessorKey: "campaign_category",
+      accessorKey: "campaignCategory",
       header: "Nama Campaign",
     },
     {
@@ -45,7 +45,7 @@ export function getColumns({ actions }: LeadsColumnProps = {}): ColumnDef<LeadsL
       header: "Channel",
     },
     {
-      accessorKey: "phone_number",
+      accessorKey: "phoneNumber",
       header: "No. Handphone",
     },
     {

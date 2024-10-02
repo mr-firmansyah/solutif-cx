@@ -28,7 +28,7 @@ export const ProfileSection = ({ data, className, children }: ProfileSectionProp
           </Avatar>
           <div className="flex flex-col items-stretch">
             <CardTitle>{data.name}</CardTitle>
-            <CardDescription className="text-xs">{data.lead_no}</CardDescription>
+            <CardDescription className="text-xs">{data.leadNo}</CardDescription>
           </div>
         </CardHeader>
         <CardContent>
@@ -36,11 +36,11 @@ export const ProfileSection = ({ data, className, children }: ProfileSectionProp
             <div className="col-span-2 font-semibold text-sm">Bio</div>
             <div className="col-span-1 flex flex-col gap-2">
               <p className="text-muted-foreground text-xs">Tempat Lahir</p>
-              <p className="text-sm">{data?.bio?.place_of_birth || "-"}</p>
+              <p className="text-sm">{data?.bio?.placeOfBirth || "-"}</p>
             </div>
             <div className="col-span-1 flex flex-col gap-2">
               <p className="text-muted-foreground text-xs">Tanggal Lahir</p>
-              <p className="text-sm">{data?.bio?.date_of_birth?.toLocaleString() || "-"}</p>
+              <p className="text-sm">{data?.bio?.dateOfBirth?.toLocaleString() || "-"}</p>
             </div>
             <div className="col-span-1 flex flex-col gap-2 capitalize">
               <p className="text-muted-foreground text-xs">Jenis Kelamin</p>
@@ -48,11 +48,11 @@ export const ProfileSection = ({ data, className, children }: ProfileSectionProp
             </div>
             <div className="col-span-1 flex flex-col gap-2">
               <p className="text-muted-foreground text-xs">Nomor Handphone</p>
-              <p className="text-sm">{data?.bio?.phone_number || "-"}</p>
+              <p className="text-sm">{data?.bio?.phoneNumber || "-"}</p>
             </div>
             <div className="col-span-1 flex flex-col gap-2">
               <p className="text-muted-foreground text-xs">No. Telp Rumah</p>
-              <p className="text-sm">{data?.bio?.home_phone_no || "-"}</p>
+              <p className="text-sm">{data?.bio?.homePhoneNo || "-"}</p>
             </div>
             <div className="col-span-1 flex flex-col gap-2">
               <p className="text-muted-foreground text-xs">Email</p>
@@ -60,23 +60,23 @@ export const ProfileSection = ({ data, className, children }: ProfileSectionProp
             </div>
             <div className="col-span-1 flex flex-col gap-2">
               <p className="text-muted-foreground text-xs">Nomor KTP</p>
-              <p className="text-sm">{data?.bio?.ktp_no || "-"}</p>
+              <p className="text-sm">{data?.bio?.ktpNo || "-"}</p>
             </div>
             <div className="col-span-1 flex flex-col gap-2">
               <p className="text-muted-foreground text-xs">Nomor NPWP</p>
-              <p className="text-sm">{data?.bio?.npwp_no || "-"}</p>
+              <p className="text-sm">{data?.bio?.npwpNo || "-"}</p>
             </div>
             <div className="col-span-1 flex flex-col gap-2">
               <p className="text-muted-foreground text-xs">Nama Perusahaan</p>
-              <p className="text-sm">{data?.bio?.company_name || "-"}</p>
+              <p className="text-sm">{data?.bio?.companyName || "-"}</p>
             </div>
             <div className="col-span-1 flex flex-col gap-2">
               <p className="text-muted-foreground text-xs">Status Pegawai</p>
-              <p className="text-sm">{data?.bio?.employee_status || "-"}</p>
+              <p className="text-sm">{data?.bio?.employeeStatus || "-"}</p>
             </div>
             <div className="col-span-1 flex flex-col gap-2">
               <p className="text-muted-foreground text-xs">Source Data</p>
-              <p className="text-sm">{data?.bio?.source_data || "-"}</p>
+              <p className="text-sm">{data?.bio?.sourceData || "-"}</p>
             </div>
           </section>
 
@@ -91,11 +91,11 @@ export const ProfileSection = ({ data, className, children }: ProfileSectionProp
                 <section className="grid grid-cols-2 gap-4 capitalize" id="address">
                   <div className="col-span-1 flex flex-col gap-2">
                     <p className="text-muted-foreground text-xs">Alamat KTP</p>
-                    <p className="text-sm">{data?.address?.ktp_address || "-"}</p>
+                    <p className="text-sm">{data?.address?.ktpAddress || "-"}</p>
                   </div>
                   <div className="col-span-1 flex flex-col gap-2">
                     <p className="text-muted-foreground text-xs">Alamat Rumah</p>
-                    <p className="text-sm">{data?.address?.home_address || "-"}</p>
+                    <p className="text-sm">{data?.address?.homeAddress || "-"}</p>
                   </div>
                 </section>
               </AccordionContent>
@@ -111,11 +111,11 @@ export const ProfileSection = ({ data, className, children }: ProfileSectionProp
                 <section className="grid grid-cols-2 gap-4 capitalize" id="address">
                   <div className="col-span-2 flex flex-col gap-2">
                     <p className="text-muted-foreground text-xs">Alamat KTP</p>
-                    <p className="text-sm">{data?.address?.ktp_address || "-"}</p>
+                    <p className="text-sm">{data?.address?.ktpAddress || "-"}</p>
                   </div>
                   <div className="col-span-2 flex flex-col gap-2">
                     <p className="text-muted-foreground text-xs">Alamat Domisili</p>
-                    <p className="text-sm">{data?.address?.home_address || "-"}</p>
+                    <p className="text-sm">{data?.address?.homeAddress || "-"}</p>
                   </div>
                 </section>
               </AccordionContent>

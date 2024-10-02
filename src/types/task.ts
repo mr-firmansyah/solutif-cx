@@ -5,17 +5,17 @@ interface User {
 
 interface Person {
   id: string;
-  user_id: string;
-  task_id: string;
+  userId: string;
+  taskId: string;
   user: User;
-  created_at: string;
-  updated_at: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface Contact {
   id: string;
-  first_name?: string;
-  last_name?: string;
+  firstName?: string;
+  lastName?: string;
   name?: string;
 }
 
@@ -23,15 +23,15 @@ export interface Task {
   id: string;
   type: string;
   date: string;
-  start_time: string;
-  end_time: string;
+  startTime: string;
+  endTime: string;
   description: string;
-  priority_id: string;
-  contact_id: string;
-  model_type: string;
-  model_id: string;
-  created_at: string;
-  updated_at: string;
+  priorityId: string;
+  contactId: string;
+  modelType: string;
+  modelId: string;
+  createdAt: string;
+  updatedAt: string;
   people: Person[];
   contact: Contact;
 }

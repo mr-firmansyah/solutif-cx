@@ -8,9 +8,9 @@ const optionSchema = z.object({
 
 export const TaskSchema = z.object({
   type: z.string().min(1, "Opty task type is required"),
-  date: z.date(),
-  startTime: z.date(),
-  endTime: z.date(),
+  date: z.date().nullish(),
+  startTime: z.date().nullish(),
+  endTime: z.date().nullish(),
   priorityId: z.string().min(1, "Priority is required"),
   contactId: z.string().optional(),
   modelId: z.string().min(1, "Model is required"), // opportunity id

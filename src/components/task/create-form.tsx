@@ -1,6 +1,7 @@
 import { Calendar as CalendarIcon } from "lucide-react";
 import { format } from "date-fns";
 import { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
 
 import {
   Form,
@@ -37,12 +38,23 @@ import { getUsers } from "@/actions/user";
 
 interface TaskCreateFormProps {
   setDate: (date: Date | undefined) => void;
+  data: any;
 }
 
-export default function TaskCreateForm({ setDate }: TaskCreateFormProps) {
+export default function TaskCreateForm({ setDate, data }: TaskCreateFormProps) {
+  const { id } = useParams();
   const [priorities, setPriorities] = useState<Option[]>([]);
   const { form, onSubmit } = useTaskForm({
     formSchema: TaskSchema,
+    defaultValues: {
+      type: "Call",
+      modelId: Array.isArray(id) ? id[0] : id?.toString(),
+      priorityId: "",
+      contactId: data?.contact.id,
+      accountId: data?.company.id,
+      description: "",
+      userId: [],
+    }
   })
 
   const handleDateChange = (date: Date | undefined) => {
@@ -50,7 +62,7 @@ export default function TaskCreateForm({ setDate }: TaskCreateFormProps) {
   }
 
   useEffect(() => {
-    getPriorities({ per_page: 100 }).then(({ data }) => {
+    getPriorities({ perPage: 100 }).then(({ data }) => {
       setPriorities(data.map((priority) => ({
         label: priority.name,
         value: priority.id,
@@ -63,10 +75,7 @@ export default function TaskCreateForm({ setDate }: TaskCreateFormProps) {
       <Form {...form}>
         <form
           className="flex flex-col space-y-4 lg:pr-2"
-          onSubmit={() => {
-            form.handleSubmit(onSubmit)();
-            console.log("form", form);
-          }}
+          onSubmit={form.handleSubmit(onSubmit)}
         >
           <FormField
             control={form.control}
@@ -251,7 +260,7 @@ export default function TaskCreateForm({ setDate }: TaskCreateFormProps) {
                       const res = await getUsers({ name: value });
                       return res.data.map((user) => ({
                         label: user.name,
-                        value: user.user_id,
+                        value: user.userId,
                       }));
                     }}
                     placeholder="Select People"

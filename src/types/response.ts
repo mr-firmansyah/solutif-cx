@@ -1,8 +1,8 @@
 interface Timestamps {
-  created_at: string;
-  updated_at: string;
-  created_by: string | null;
-  updated_by: string | null;
+  createdAt: string;
+  updatedAt: string;
+  createdBy: string | null;
+  updatedBy: string | null;
 }
 
 interface ApiResponse<T> {
@@ -28,18 +28,18 @@ interface LoginResponse {
     id: string;
     name: string;
     email: string;
-    position_id: string;
+    positionId: string;
     roles: string[];
     permissions: string[];
     branch: {
       id: string;
-      branch_code: string;
-      branch_name: string;
-      nama_kota: string;
+      branchCode: string;
+      branchName: string;
+      namaKota: string;
       provinsi: string;
-      kode_pos: string;
+      kodePos: string;
       alamat: string;
-      has_deleted: boolean;
+      hasDeleted: boolean;
     };
   };
   token: string;
@@ -53,7 +53,7 @@ type LeadsDetailsResponse = ApiResponse<LeadsDetails>;
 type LeadsResponse = PaginatedApiResponse<LeadsListResponse>;
 
 type LogsResponse = PaginatedApiResponse<LogsList>;
-type AttachmentsResponse = PaginatedApiResponse<AttacmentsList>;
+type AttachmentsResponse = PaginatedApiResponse<AttachmentsList>;
 
 type PrioritiesResponse = PaginatedApiResponse<PriorityList>;
 type BranchesResponse = PaginatedApiResponse<BranchList>;

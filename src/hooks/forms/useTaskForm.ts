@@ -20,7 +20,6 @@ export function useTaskForm<TSchema extends z.ZodType<any, any>>(options: {
   })
 
   const onSubmit = async (data: z.infer<TSchema>) => {
-    console.log("data", data);
     setLoading(true);
     try {
       // NOTE: This should be replaced with the actual API call

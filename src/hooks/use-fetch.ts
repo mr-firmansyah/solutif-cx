@@ -1,8 +1,13 @@
 import ky, { type KyInstance } from "ky";
 import { getServerSession } from "next-auth/next";
 import { Session } from "next-auth";
+import {
+  requestToSnakeCase,
+  responseToCamelCase,
+} from "@alice-health/ky-hooks-change-case";
 
 import { authOptions } from "@/auth";
+
 
 export const useFetch = (tenant: string): KyInstance => {
   if (!tenant || tenant === "") {
@@ -19,6 +24,7 @@ export const useFetch = (tenant: string): KyInstance => {
           const token = (session as Session & { accessToken?: string })?.accessToken;
           if (token) request.headers.set("Authorization", `Bearer ${token}`);
         },
+        requestToSnakeCase,
       ],
       // beforeError: [
       //   error => {
@@ -38,7 +44,8 @@ export const useFetch = (tenant: string): KyInstance => {
             // clear all cookies
           }
           return response;
-        },  
+        }, 
+        responseToCamelCase, 
       ],
     },
   });

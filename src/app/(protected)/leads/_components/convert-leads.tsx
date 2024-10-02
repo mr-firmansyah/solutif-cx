@@ -286,7 +286,7 @@ export default function ConvertLeadsModal() {
                           onChange={(selectedOptions) => field.onChange(selectedOptions.length > 0 ? [selectedOptions[0]] : [])}
                           onSearch={async (value) => {
                             const res = await getBranches({ name: value });
-                            return res.data.map((branch) => ({ label: branch.branch_name, value: branch.branch_code }) as Option);
+                            return res.data.map((branch) => ({ label: branch.branchName, value: branch.branchCode }) as Option);
                           }}
                           placeholder="Select Branch"
                           triggerSearchOnFocus

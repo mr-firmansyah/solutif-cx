@@ -1,8 +1,8 @@
 interface LeadsListResponse extends Timestamps {
   id: string;
-  lead_number: string;
+  leadNumber: string;
   name: string;
-  phone_number: string;
+  phoneNumber: string;
   email: string;
   status: string;
 }
@@ -10,7 +10,7 @@ interface LeadsListResponse extends Timestamps {
 interface LeadsDetails {
   id: string;
   name: string;
-  lead_no: string;
+  leadNo: string;
   status: {
     pipeline: PipelineStatus[];
     current: number;
@@ -18,7 +18,7 @@ interface LeadsDetails {
   bio: Bio;
   address: Address;
   campaign: Campaign;
-  additional_information: {
+  additionalInformation: {
     [key: string]: string;
   }
 }
@@ -29,34 +29,34 @@ type PipelineStatus = {
 };
 
 interface Bio extends Address {
-  company_name: string;
+  companyName: string;
   email: string;
-  phone_number: string;
-  source_data: string;
-  npwp_no: string;
-  ktp_no: string;
-  home_phone_no: string;
-  place_of_birth: string;
-  date_of_birth: string;
+  phoneNumber: string;
+  sourceData: string;
+  npwpNo: string;
+  ktpNo: string;
+  homePhoneNo: string;
+  placeOfBirth: string;
+  dateOfBirth: string;
   gender: string;
-  employee_status: string;
+  employeeStatus: string;
 }
 
 type Address = {
-  ktp_address: string;
-  home_address: string;
+  ktpAddress: string;
+  homeAddress: string;
 }
 
 type Campaign = Timestamps & {
   id: string;
-  campaign_number: string;
-  campaign_name: string;
+  campaignNumber: string;
+  campaignName: string;
   brief: string;
   script: string;
   type: string;
-  call_group: string;
+  callGroup: string;
   status: string | null;
-  plan_start_date: string;
-  target_close_date: string;
+  planStartDate: string;
+  targetCloseDate: string;
   category: string;
 }
