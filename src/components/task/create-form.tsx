@@ -1,7 +1,6 @@
-"use client"
-
 import { Calendar as CalendarIcon } from "lucide-react";
 import { format } from "date-fns";
+import { useEffect, useState } from "react";
 
 import {
   Form,
@@ -33,18 +32,41 @@ import { DateTimePicker, TimePicker } from "@/components/ui/datetime-picker";
 import { useTaskForm } from "@/hooks/forms/useTaskForm";
 import { TaskSchema } from "@/schema";
 import { cn } from "@/lib/utils";
+import { getPriorities } from "@/actions/priority";
+import { getUsers } from "@/actions/user";
 
-export default function TaskCreateForm() {
+interface TaskCreateFormProps {
+  setDate: (date: Date | undefined) => void;
+}
+
+export default function TaskCreateForm({ setDate }: TaskCreateFormProps) {
+  const [priorities, setPriorities] = useState<Option[]>([]);
   const { form, onSubmit } = useTaskForm({
     formSchema: TaskSchema,
   })
+
+  const handleDateChange = (date: Date | undefined) => {
+    setDate(date);
+  }
+
+  useEffect(() => {
+    getPriorities({ per_page: 100 }).then(({ data }) => {
+      setPriorities(data.map((priority) => ({
+        label: priority.name,
+        value: priority.id,
+      })));
+    });
+  }, []);
 
   return (
     <div className="w-8/12">
       <Form {...form}>
         <form
           className="flex flex-col space-y-4 lg:pr-2"
-          onSubmit={form.handleSubmit(onSubmit)}
+          onSubmit={() => {
+            form.handleSubmit(onSubmit)();
+            console.log("form", form);
+          }}
         >
           <FormField
             control={form.control}
@@ -107,7 +129,7 @@ export default function TaskCreateForm() {
             render={({ field }) => (
               <FormItem className="md:basis-1/3">
                 <FormControl>
-                <Popover>
+                  <Popover>
                     <PopoverTrigger asChild>
                       <Button
                         className={cn(
@@ -129,7 +151,10 @@ export default function TaskCreateForm() {
                       <Calendar
                         initialFocus
                         mode="single"
-                        onSelect={field.onChange}
+                        onSelect={(date) => {
+                          field.onChange(date);
+                          handleDateChange(date);
+                        }}
                         selected={field.value}
                       />
                     </PopoverContent>
@@ -192,11 +217,11 @@ export default function TaskCreateForm() {
                       <SelectValue placeholder="Select Priority" />
                     </SelectTrigger>
                     <SelectContent>
-                      {/* {priorities.map((priority) => (
-                        <SelectItem key={priority.id} value={`${priority.id}`}>
-                          {priority.name}
+                      {priorities.map((priority) => (
+                        <SelectItem key={priority.value} value={`${priority.value}`}>
+                          {priority.label}
                         </SelectItem>
-                      ))} */}
+                      ))}
                     </SelectContent>
                   </Select>
                 </FormControl>
@@ -219,10 +244,16 @@ export default function TaskCreateForm() {
                       </p>
                     }
                     hideClearAllButton
-                    // onSearch={async (value) => {
-                    //   const res = await searchUser(value);
-                    //   return res;
-                    // }}
+                    loadingIndicator={
+                      <p className="py-2 text-center text-lg leading-10 text-muted-foreground">loading...</p>
+                    }
+                    onSearch={async (value) => {
+                      const res = await getUsers({ name: value });
+                      return res.data.map((user) => ({
+                        label: user.name,
+                        value: user.user_id,
+                      }));
+                    }}
                     placeholder="Select People"
                     triggerSearchOnFocus
                   />
@@ -232,7 +263,7 @@ export default function TaskCreateForm() {
             )}
           />
 
-          <FormField
+          {/* <FormField
             control={form.control}
             name="contactId"
             render={({ field }) => (
@@ -268,7 +299,7 @@ export default function TaskCreateForm() {
                 <FormMessage />
               </FormItem>
             )}
-          />
+          /> */}
 
           <Button type="submit">Create Task</Button>
         </form>

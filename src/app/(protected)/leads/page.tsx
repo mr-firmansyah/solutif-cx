@@ -4,7 +4,6 @@ import * as React from "react";
 
 import type { SearchParams } from "@/types";
 import { DataTableSkeleton } from "@/components/data-table/data-table-skeleton";
-import { Shell } from "@/components/ui/shell";
 import { searchParamsSchema } from "@/app/(protected)/leads/_table/validations";
 import { getLeads } from "@/actions/lead";
 
@@ -19,7 +18,7 @@ export default async function LeadPage({ searchParams }: LeadPageProps) {
 
   const leadPromise = getLeads(search);
   return (
-    <Shell className="gap-2" label="Leads">
+    <>
       {/**
        * The `TasksTableProvider` is use to enable some feature flags for the `TasksTable` component.
        * Feel free to remove this, as it's not required for the `TasksTable` component to work.
@@ -46,6 +45,6 @@ export default async function LeadPage({ searchParams }: LeadPageProps) {
          */}
         <LeadsTable leadsPromise={leadPromise} />
       </React.Suspense>
-    </Shell>
+    </>
   );
 }

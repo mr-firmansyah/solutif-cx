@@ -1,20 +1,22 @@
 import { cookies } from "next/headers";
 import dynamic from "next/dynamic";
+import { toast } from "sonner";
 
 import { useFetch as ky } from "@/hooks/use-fetch";
-import { Shell } from "@/components/ui/shell";
 import { Skeleton } from "@/components/ui/skeleton";
+import { getAttachmentsById, getLogsById } from "@/actions/misc";
+import { Shell } from "@/components/ui/shell";
+import { AppBreadcrumb, type LinkBreadcrumb } from "@/components/app-breadcrumb";
 
 import { ProfileSection } from "../../_components/detail-profile-section";
 import { CampaignSection } from "../../_components/detail-campaign-section";
 import { DetailTabs } from "../../_components/detail-tabs";
 import PipelineStatusLeads from "../../_components/pipeline-status-leads";
 
+// NOTE: I personally didn't know why this should be dynamic with ssr: false
+// but maybe it's because the parent component is server-rendered?
 const ConvertLeadsModal = dynamic(() => import("../../_components/convert-leads"), { ssr: false, loading: () => <Skeleton className="w-full h-9" /> });
 
-// NOTE: It's better to globally define this extended ky instance for v2 API isn't it?
-// So we don't have to repeat this in every file
-const api = (tenant: string) => ky(tenant).extend((options) => ({ prefixUrl: `${options.prefixUrl}/v2` }))
 
 interface LeadsDetailPageProps {
   params: {
@@ -22,29 +24,47 @@ interface LeadsDetailPageProps {
   };
 }
 
+// NOTE: It's better to globally define this extended ky instance for v2 API isn't it?
+// So we don't have to repeat this in every file
+const api = (tenant: string) => ky(tenant).extend((options) => ({ prefixUrl: `${options.prefixUrl}/v2` }))
+const breadcrumb: LinkBreadcrumb[] = [
+  { href: "/leads", label: "Leads" },
+  { label: "Detail Lead" },
+];
+
 export default async function LeadsDetailPage({ params }: LeadsDetailPageProps) {
   const { id } = params;
-  const { data, error } = await getLeadsDetail(id);
+  const promiseLeadsDetail = getLeadsDetail(id);
+  const promiseLogs = getLogsById(id);
+  const promiseAttachments = getAttachmentsById(id);
+
+  const [leads, logs, attachments] = await Promise.all([promiseLeadsDetail, promiseLogs, promiseAttachments]);
+
+  const data = {
+    logs,
+    leads,
+    attachments,
+  }
 
   // NOTE: This should redirect to the error page
   // TODO: Later on, we will add a custom error page
   // TODO: eg. redirect('/error', { statusCode: 404 });
-  if (error) {
-    throw error;
-  }
+  // if (leads.error || logs.error) {
+  //   redirect('/error');
+  // }
 
   return (
-    <Shell className="gap-4" label="Leads">
-      <PipelineStatusLeads data={data} />
+    <Shell className="gap-4" label={ <AppBreadcrumb items={breadcrumb} /> }>
+      <PipelineStatusLeads data={data.leads?.data} />
 
       <div className="flex flex-col md:flex-row gap-4">
-        <ProfileSection className="md:w-5/12" data={data}>
+        <ProfileSection className="md:w-5/12" data={data.leads?.data}>
           <ConvertLeadsModal />
         </ProfileSection>
-        <CampaignSection className="w-full" data={data} />
+        <CampaignSection className="w-full" data={data.leads?.data} />
       </div>
 
-      <DetailTabs data={data} />
+      <DetailTabs attachments={data.attachments} logs={data.logs} />
       {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
     </Shell>
   );

@@ -37,9 +37,9 @@ function Shell({
 }: ShellProps) {
   return (
     <>
-      <h2 className="sticky top-0 z-10 scroll-m-20 border-b py-2 px-8 text-lg font-semibold tracking-tight first:mt-0 bg-white">
-        <div className="h-8 flex items-center">{label}</div>
-      </h2>
+      <div className="flex items-center sticky min-h-[58px] top-0 z-10 scroll-m-20 border-b px-8 text-lg font-semibold tracking-tight first:mt-0 bg-white">
+        {label}
+      </div>
       <Comp className={cn(shellVariants({ variant }), className)} {...props} />
     </>
   );

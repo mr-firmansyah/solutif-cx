@@ -16,7 +16,7 @@ export function LeadsTableToolbarActions({
   return (
     <div className="flex items-center gap-2">
       <Button asChild size="sm">
-        <Link href="/service-request/create">
+        <Link href="/leads/create">
           <PlusIcon aria-hidden="true" className="mr-2 size-4" />
           Create Leads
         </Link>

@@ -9,19 +9,21 @@ import {
 import { cn } from "@/lib/utils";
 
 interface ProfileSectionProps {
-  data: LeadsDetails;
+  data: LeadsDetails | undefined;
   className?: string;
   children?: React.ReactNode;
 }
 
 export const ProfileSection = ({ data, className, children }: ProfileSectionProps) => {
+  if (!data) return null;
+
   return (
     <section className={cn("flex flex-col gap-2", className)} id="profile-section">
       {children}
       <Card className="shadow-none rounded-md">
         <CardHeader className="flex-row space-x-2 capitalize">
           <Avatar>
-            <AvatarImage alt={data.name} src={undefined} />
+            <AvatarImage alt={data?.name} src={undefined} />
             <AvatarFallback>{data.name[0]}</AvatarFallback>
           </Avatar>
           <div className="flex flex-col items-stretch">

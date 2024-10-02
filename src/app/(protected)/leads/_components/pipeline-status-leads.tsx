@@ -3,11 +3,12 @@
 import { Pipeline, PipelineItem, PipelineTrigger } from "@/components/ui/pipeline-status";
 
 interface PipelineLeadsProps {
-  data: LeadsDetails;
+  data: LeadsDetails | undefined;
 }
 
 export default function PipelineStatusLeads({ data }: PipelineLeadsProps) {
-  const { pipeline, current } = data.status;
+  if (!data) return null;
+  const { pipeline, current } = data?.status;
 
   return (
     <Pipeline current={current}>

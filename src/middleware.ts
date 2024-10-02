@@ -3,18 +3,13 @@ import { NextRequest, NextResponse } from "next/server";
 export async function middleware(request: NextRequest) {
   const host = request.headers.get("host") || "";
   const subdomain = host.split(".")[0];
-  // const domain = host.split(".")[1];
-  // const secret = process.env.NEXTAUTH_SECRET;
-  // const apiPath = process.env.NEXTAUTH_PUBLIC_API_PATH || "api";
-  // if (!secret) {
-  //   throw new Error("NEXTAUTH_SECRET is not defined");
-  // }
-  // const token = await getToken({ req: request, secret, salt: subdomain });
+  // eslint-disable-next-line no-console
+  console.log(subdomain)
 
-  // if (!token) {
-  //   return NextResponse.redirect(`http://${subdomain}.${domain}/api/auth/signout`);
-  // }
-  
+  if (!subdomain) {
+    return new NextResponse("Not Found", { status: 404 });
+  }
+
   const response = NextResponse.next();
 
   // Set tenant in cookies or headers

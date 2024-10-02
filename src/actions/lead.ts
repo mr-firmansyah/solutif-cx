@@ -23,3 +23,17 @@ export const getLeads = async (input: GetTicketsSchema) => {
     throw error;
   }
 };
+
+export const convertLead = async (payload) => {
+  const tenant = cookies().get('tenant')?.value || "";
+
+  try {
+    const response = await api(tenant)
+      .post<LeadsResponse>(`leads/convert/v2`, { json: payload })
+      .json();
+
+    return response;
+  } catch (error) {
+    throw error;
+  }
+}

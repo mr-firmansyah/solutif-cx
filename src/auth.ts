@@ -11,7 +11,7 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     redirect: async ({ url, baseUrl }) => {
       // eslint-disable-next-line no-console
-      console.log("redirect", url, baseUrl);
+      // console.log("redirect", url, baseUrl);
       return url.startsWith(baseUrl) ? url : baseUrl;
     },
     async session({ token, session }) {

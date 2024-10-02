@@ -2,20 +2,18 @@
 
 import { cookies } from "next/headers"
 
-import { useFetch as ky } from "@/hooks/use-fetch";
+import { useFetch as api } from "@/hooks/use-fetch";
 
-type ContactsSearchParams = Partial<SearchParams> & {
+type BranchesSearchParams = Partial<SearchParams> & {
   name?: string;
 }
 
-const api = (tenant: string) => ky(tenant).extend((options) => ({ prefixUrl: `${options.prefixUrl}/v2` }))
-
-export const getContacts = async (input: ContactsSearchParams) => {
+export const getBranches = async (input?: BranchesSearchParams) => {
   const tenant = cookies().get('tenant')?.value || "";
 
   try {
     const response = await api(tenant)
-      .get<ContactsResponse>("contact", {
+      .get<BranchesResponse>("branch", {
         searchParams: input,
       })
       .json();

@@ -1,15 +1,19 @@
-"use client";
-
+import { LogComponent } from "@/components/log";
 import { TaskComponent } from "@/components/task";
-import TaskCreateForm from "@/components/task/create-form";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-export function DetailTabs({ data }: { data: LeadsDetails }) {
+interface DetailTabsProps {
+  logs: LogsResponse | null;
+  tasks?: any;
+  attachments?: AttachmentsResponse | null;
+  activities?: any;
+}
+
+export function DetailTabs({ logs, tasks, attachments, activities }: DetailTabsProps) {
   return (
     <Tabs defaultValue="task">
       <TabsList>
-        {/* eslint-disable-next-line no-console */}
-        <TabsTrigger onClick={() => console.log("test")} value="task">Task</TabsTrigger>
+        <TabsTrigger value="task">Task</TabsTrigger>
         <TabsTrigger value="posts">Posts</TabsTrigger>
         <TabsTrigger value="attachments">Attachments</TabsTrigger>
         <TabsTrigger value="log">Log</TabsTrigger>
@@ -17,9 +21,16 @@ export function DetailTabs({ data }: { data: LeadsDetails }) {
       <TabsContent value="task">
         <TaskComponent />
       </TabsContent>
-      <TabsContent value="posts">POST COMPONENT</TabsContent>
-      <TabsContent value="attachments">ATTACHMENT COMPONENT</TabsContent>
-      <TabsContent value="log">LOG COMPONENT</TabsContent>
+      <TabsContent value="posts">
+        {/* <PostComponent /> */}
+        POST COMPONENT
+      </TabsContent>
+      <TabsContent value="attachments">
+        NO DESIGN YET
+      </TabsContent>
+      <TabsContent value="log">
+        <LogComponent logs={logs} />
+      </TabsContent>
     </Tabs>
   )
 }

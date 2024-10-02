@@ -10,11 +10,12 @@ import {
 } from "@/components/ui/accordion"
 
 interface CampaignSectionProps {
-  data: LeadsDetails;
+  data: LeadsDetails | undefined;
   className?: string;
 }
 
 export const CampaignSection = ({ data, className }: CampaignSectionProps) => {
+  if (!data) return null;
   return (
     <div className={className}>
       <Card className="shadow-none rounded-md">

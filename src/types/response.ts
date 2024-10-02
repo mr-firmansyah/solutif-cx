@@ -51,3 +51,11 @@ type ContactsResponse = PaginatedApiResponse<ContactListResponse>;
 
 type LeadsDetailsResponse = ApiResponse<LeadsDetails>;
 type LeadsResponse = PaginatedApiResponse<LeadsListResponse>;
+
+type LogsResponse = PaginatedApiResponse<LogsList>;
+type AttachmentsResponse = PaginatedApiResponse<AttacmentsList>;
+
+type PrioritiesResponse = PaginatedApiResponse<PriorityList>;
+type BranchesResponse = PaginatedApiResponse<BranchList>;
+
+type UsersResponse = PaginatedApiResponse<UserList>;
