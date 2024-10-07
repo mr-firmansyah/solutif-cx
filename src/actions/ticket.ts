@@ -6,18 +6,18 @@ import { GetTicketsSchema } from "@/app/(protected)/service-request/_table/valid
 import { useFetch as api } from "@/hooks/use-fetch";
 
 export const getTickets = async (input: GetTicketsSchema) => {
-  const tenant = cookies().get('tenant')?.value || "";
+	const tenant = cookies().get("tenant")?.value || "";
 
-  try {
-    const response = await api(tenant)
-      .get<TicketsResponse>("ticket", {
-        searchParams: input,
-      })
-      .json();
-    const { totalPage: pageCount } = response?.data;
+	try {
+		const response = await api(tenant)
+			.get<TicketsResponse>("ticket", {
+				searchParams: input,
+			})
+			.json();
+		const { totalPage: pageCount } = response?.data;
 
-    return { data: response.data?.data, pageCount };
-  } catch (error: unknown) {
-    throw error;
-  }
+		return { data: response.data?.data, pageCount };
+	} catch (error: unknown) {
+		throw error;
+	}
 };

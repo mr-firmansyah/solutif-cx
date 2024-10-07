@@ -7,20 +7,20 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 interface LeadsTableToolbarActionsProps {
-  table?: Table<LeadsList>;
+	table?: Table<LeadsList>;
 }
 
 export function LeadsTableToolbarActions({
-  table,
+	table,
 }: LeadsTableToolbarActionsProps) {
-  return (
-    <div className="flex items-center gap-2">
-      <Button asChild size="sm">
-        <Link href="/leads/create">
-          <PlusIcon aria-hidden="true" className="mr-2 size-4" />
-          Create Leads
-        </Link>
-      </Button>
-    </div>
-  );
+	return (
+		<div className="flex items-center gap-2">
+			<Button asChild size="sm">
+				<Link href="/leads/create">
+					<PlusIcon aria-hidden="true" className="mr-2 size-4" />
+					Create Leads
+				</Link>
+			</Button>
+		</div>
+	);
 }

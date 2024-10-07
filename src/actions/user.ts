@@ -5,22 +5,22 @@ import { cookies } from "next/headers";
 import { useFetch as api } from "@/hooks/use-fetch";
 
 type UsersSearchParams = Partial<SearchParams> & {
-  name?: string;
-}
+	name?: string;
+};
 
 export const getUsers = async (input: UsersSearchParams) => {
-  const tenant = cookies().get('tenant')?.value || "";
+	const tenant = cookies().get("tenant")?.value || "";
 
-  try {
-    const response = await api(tenant)
-      .get<UsersResponse>('users', {
-        searchParams: input,
-      })
-      .json();
-    const { totalPage: pageCount } = response?.data;
+	try {
+		const response = await api(tenant)
+			.get<UsersResponse>("users", {
+				searchParams: input,
+			})
+			.json();
+		const { totalPage: pageCount } = response?.data;
 
-    return { data: response.data?.data, pageCount };
-  } catch (error: unknown) {
-    throw new Error(error as string);
-  }
+		return { data: response.data?.data, pageCount };
+	} catch (error: unknown) {
+		throw new Error(error as string);
+	}
 };

@@ -7,24 +7,24 @@ import * as zod from "zod";
 import { LoginSchema } from "@/schema";
 
 export const login = async () => {
-  // const validatedFields = LoginSchema.safeParse(values);
+	// const validatedFields = LoginSchema.safeParse(values);
 
-  // if (!validatedFields.success) {
-  //   return { error: 'Invalid fields!' };
-  // }
+	// if (!validatedFields.success) {
+	//   return { error: 'Invalid fields!' };
+	// }
 
-  // const { email, password } = validatedFields.data
+	// const { email, password } = validatedFields.data
 
-  try {
-    // await signIn("genesys", {
-    //   redirectTo: '/dashboard',
-    // });
-  } catch (error) {
-    // eslint-disable-next-line no-console
-    // console.log(error);
+	try {
+		// await signIn("genesys", {
+		//   redirectTo: '/dashboard',
+		// });
+	} catch (error) {
+		// eslint-disable-next-line no-console
+		// console.log(error);
 
-    throw error;
-  }
+		throw error;
+	}
 
-  return { error: "Something went wrong!" };
+	return { error: "Something went wrong!" };
 };

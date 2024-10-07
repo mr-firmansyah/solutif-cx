@@ -6,8 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "format": "eslint --fix ."
+    "lint": "npx @biomejs/biome lint --write src",
+    "format": "npx @biomejs/biome format --write src"
   },
   "dependencies": {
     "@alice-health/ky-hooks-change-case": "^0.0.3",
@@ -57,17 +57,11 @@
     "zustand": "^4.5.5"
   },
   "devDependencies": {
+    "@biomejs/biome": "^1.9.3",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "eslint": "^8",
-    "eslint-config-next": "14.2.7",
-    "eslint-config-prettier": "9.1.0",
-    "eslint-plugin-import": "^2.29.1",
-    "eslint-plugin-jsx-a11y": "^6.8.0",
-    "eslint-plugin-prettier": "^5.2.1",
     "postcss": "^8",
-    "prettier": "^3.2.5",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
   }

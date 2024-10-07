@@ -1,48 +1,48 @@
 interface Timestamps {
-  createdAt: string;
-  updatedAt: string;
-  createdBy: string | null;
-  updatedBy: string | null;
+	createdAt: string;
+	updatedAt: string;
+	createdBy: string | null;
+	updatedBy: string | null;
 }
 
 interface ApiResponse<T> {
-  error: boolean;
-  status: string;
-  message: string;
-  data: T;
+	error: boolean;
+	status: string;
+	message: string;
+	data: T;
 }
 
 interface PaginatedData<T> {
-  totalElements: number;
-  totalPage: number;
-  isLastPage: boolean;
-  page: number;
-  size: number;
-  data: T[];
+	totalElements: number;
+	totalPage: number;
+	isLastPage: boolean;
+	page: number;
+	size: number;
+	data: T[];
 }
 
 type PaginatedApiResponse<T> = ApiResponse<PaginatedData<T>>;
 
 interface LoginResponse {
-  user: {
-    id: string;
-    name: string;
-    email: string;
-    positionId: string;
-    roles: string[];
-    permissions: string[];
-    branch: {
-      id: string;
-      branchCode: string;
-      branchName: string;
-      namaKota: string;
-      provinsi: string;
-      kodePos: string;
-      alamat: string;
-      hasDeleted: boolean;
-    };
-  };
-  token: string;
+	user: {
+		id: string;
+		name: string;
+		email: string;
+		positionId: string;
+		roles: string[];
+		permissions: string[];
+		branch: {
+			id: string;
+			branchCode: string;
+			branchName: string;
+			namaKota: string;
+			provinsi: string;
+			kodePos: string;
+			alamat: string;
+			hasDeleted: boolean;
+		};
+	};
+	token: string;
 }
 
 type UserResponse = ApiResponse<LoginResponse>;
