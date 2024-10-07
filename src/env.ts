@@ -31,13 +31,13 @@ export const env = createEnv({
    */
   runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
-    NEXTAUTH_URL: process.env.NEXTAUTH_URL,
+    NEXTAUTH_URL: process.env.NEXTAUTH_URL || "",
     NEXT_PUBLIC_API_PATH: process.env.NEXT_PUBLIC_API_PATH,
     NEXT_PUBLIC_API_DOMAIN: process.env.NEXT_PUBLIC_API_DOMAIN,
-    NEXT_PUBLIC_GENESYS_REDIRECT_URI: process.env.NEXT_PUBLIC_GENESYS_REDIRECT_URI,
-    NEXT_PUBLIC_GENESYS_ENVIRONMENT: process.env.NEXT_PUBLIC_GENESYS_ENVIRONMENT,
+    NEXT_PUBLIC_GENESYS_REDIRECT_URI: process.env.NEXT_PUBLIC_GENESYS_REDIRECT_URI || "",
+    NEXT_PUBLIC_GENESYS_ENVIRONMENT: process.env.NEXT_PUBLIC_GENESYS_ENVIRONMENT || "",
     GENESYS_CLIENT_SECRET: process.env.GENESYS_CLIENT_SECRET,
-    GENESYS_CLIENT_ID: process.env.GENESYS_CLIENT_ID
+    GENESYS_CLIENT_ID: process.env.GENESYS_CLIENT_ID || "",
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially
