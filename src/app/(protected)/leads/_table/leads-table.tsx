@@ -18,6 +18,12 @@ interface LeadsTableProps {
   actions?: DataTableRowAction<LeadsList>[];
 }
 
+const statusOptions = [
+  { label: "Open", value: "open" },
+  { label: "In Progress", value: "in_progress" },
+  { label: "Closed", value: "closed" },
+]
+
 export function LeadsTable({ leadsPromise, actions }: LeadsTableProps) {
   const { data, pageCount } = React.use(leadsPromise);
 
@@ -41,14 +47,39 @@ export function LeadsTable({ leadsPromise, actions }: LeadsTableProps) {
       value: "name",
       placeholder: "Filter name...",
     },
+    {
+      label: "Status",
+      value: "status",
+      options: statusOptions.map((status) => ({
+        label: status.label,
+        value: status.value,
+        withCount: true,
+      })),
+    },
+    // {
+    //   label: "Priority",
+    //   value: "priority",
+    //   options: tasks.priority.enumValues.map((priority) => ({
+    //     label: priority[0]?.toUpperCase() + priority.slice(1),
+    //     value: priority,
+    //     icon: getPriorityIcon(priority),
+    //     withCount: true,
+    //   })),
+    // },
   ];
 
   const { table } = useDataTable({
     data,
     columns,
     pageCount,
-    /* optional props */
     filterFields,
+    initialState: {
+      // sorting: [{ id: "createdAt", desc: true }],
+      columnPinning: { right: ["actions"] },
+    },
+    getRowId: (originalRow, index) => `${originalRow.id}-${index}`,
+    shallow: false,
+    clearOnDefault: true,
   });
 
   return (
