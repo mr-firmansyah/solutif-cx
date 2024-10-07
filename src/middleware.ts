@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function middleware(request: NextRequest) {
   const host = request.headers.get("host") || "";
-  const subdomain = host.split(".")[0];
+  const subdomain = process.env.NODE_ENV !== "development" ? host.split(".")[0] : "adira";
 
   if (!subdomain) {
     return new NextResponse("Not Found", { status: 404 });
