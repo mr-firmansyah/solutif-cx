@@ -15,7 +15,7 @@ import { LeadsTableToolbarActions } from "./leads-table-toolbar-actions";
 interface LeadsTableProps {
   leadsPromise: Promise<{ data: any; pageCount: number }>;
   // LeadsPromise: { data: any; pageCount: number };
-  actions?: DataTableRowAction<LeadsListResponse>[];
+  actions?: DataTableRowAction<LeadsList>[];
 }
 
 export function LeadsTable({ leadsPromise, actions }: LeadsTableProps) {
@@ -35,7 +35,7 @@ export function LeadsTable({ leadsPromise, actions }: LeadsTableProps) {
    * @prop {React.ReactNode} [icon] - An optional icon to display next to the label.
    * @prop {boolean} [withCount] - An optional boolean to display the count of the filter option.
    */
-  const filterFields: DataTableFilterField<LeadsListResponse>[] = [
+  const filterFields: DataTableFilterField<LeadsList>[] = [
     {
       label: "Name",
       value: "name",

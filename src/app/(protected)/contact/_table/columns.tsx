@@ -7,10 +7,10 @@ import Link from "next/link";
 import { DataTableRowAction } from "@/types";
 
 interface ContactsColumnProps {
-  actions?: DataTableRowAction<ContactListResponse>[];
+  actions?: DataTableRowAction<ContactList>[];
 }
 
-export function getColumns({ actions }: ContactsColumnProps = {}): ColumnDef<ContactListResponse>[] {
+export function getColumns({ actions }: ContactsColumnProps = {}): ColumnDef<ContactList>[] {
   return [
     {
       accessorKey: "name",

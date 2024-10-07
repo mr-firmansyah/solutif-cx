@@ -7,10 +7,10 @@ import Link from "next/link";
 import { DataTableRowAction } from "@/types";
 
 interface LeadsColumnProps {
-  actions?: DataTableRowAction<LeadsListResponse>[];
+  actions?: DataTableRowAction<LeadsList>[];
 }
 
-export function getColumns({ actions }: LeadsColumnProps = {}): ColumnDef<LeadsListResponse>[] {
+export function getColumns({ actions }: LeadsColumnProps = {}): ColumnDef<LeadsList>[] {
   return [
     {
       accessorKey: "leadNumber",
@@ -29,15 +29,11 @@ export function getColumns({ actions }: LeadsColumnProps = {}): ColumnDef<LeadsL
       header: "Nama",
     },
     {
-      accessorKey: "leadType",
+      accessorKey: "type",
       header: "Tipe Leads",
     },
     {
       accessorKey: "campaignName",
-      header: "Nama Campaign",
-    },
-    {
-      accessorKey: "campaignCategory",
       header: "Nama Campaign",
     },
     {

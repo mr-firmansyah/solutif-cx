@@ -29,7 +29,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import MultipleSelector, { Option } from "@/components/ui/multi-select";
-import { DateTimePicker, TimePicker } from "@/components/ui/datetime-picker";
+import { TimePicker } from "@/components/ui/datetime-picker";
 import { useTaskForm } from "@/hooks/forms/useTaskForm";
 import { TaskSchema } from "@/schema";
 import { cn } from "@/lib/utils";
@@ -62,7 +62,7 @@ export default function TaskCreateForm({ setDate, data }: TaskCreateFormProps) {
   }
 
   useEffect(() => {
-    getPriorities({ perPage: 100 }).then(({ data }) => {
+    getPriorities({ per_page: 100 }).then(({ data }) => {
       setPriorities(data.map((priority) => ({
         label: priority.name,
         value: priority.id,
@@ -77,6 +77,7 @@ export default function TaskCreateForm({ setDate, data }: TaskCreateFormProps) {
           className="flex flex-col space-y-4 lg:pr-2"
           onSubmit={form.handleSubmit(onSubmit)}
         >
+          {/* Description */}
           <FormField
             control={form.control}
             name="description"
@@ -90,6 +91,7 @@ export default function TaskCreateForm({ setDate, data }: TaskCreateFormProps) {
             )}
           />
 
+          {/* Type */}
           <FormField
             control={form.control}
             name="type"
@@ -132,6 +134,7 @@ export default function TaskCreateForm({ setDate, data }: TaskCreateFormProps) {
             )}
           />
 
+          {/* Date */}
           <FormField
             control={form.control}
             name="date"
@@ -164,7 +167,7 @@ export default function TaskCreateForm({ setDate, data }: TaskCreateFormProps) {
                           field.onChange(date);
                           handleDateChange(date);
                         }}
-                        selected={field.value}
+                        selected={field.value ?? undefined}
                       />
                     </PopoverContent>
                   </Popover>
@@ -174,6 +177,7 @@ export default function TaskCreateForm({ setDate, data }: TaskCreateFormProps) {
             )}
           />
 
+          {/* Time */}
           <div className="flex items-center justify-between gap-4">
             <FormField
               control={form.control}
@@ -212,6 +216,7 @@ export default function TaskCreateForm({ setDate, data }: TaskCreateFormProps) {
             />
           </div>
 
+          {/* Priority */}
           <FormField
             control={form.control}
             name="priorityId"
@@ -239,6 +244,7 @@ export default function TaskCreateForm({ setDate, data }: TaskCreateFormProps) {
             )}
           />
 
+          {/* Assignee */}
           <FormField
             control={form.control}
             name="userId"
@@ -272,7 +278,8 @@ export default function TaskCreateForm({ setDate, data }: TaskCreateFormProps) {
             )}
           />
 
-          {/* <FormField
+          {/* Contact */}
+          <FormField
             control={form.control}
             name="contactId"
             render={({ field }) => (
@@ -291,6 +298,7 @@ export default function TaskCreateForm({ setDate, data }: TaskCreateFormProps) {
             )}
           />
 
+          {/* Account */}
           <FormField
             control={form.control}
             name="accountId"
@@ -308,9 +316,11 @@ export default function TaskCreateForm({ setDate, data }: TaskCreateFormProps) {
                 <FormMessage />
               </FormItem>
             )}
-          /> */}
+          />
 
-          <Button type="submit">Create Task</Button>
+          <Button className="w-1/3 self-end" type="submit">
+            Create Task
+          </Button>
         </form>
       </Form>
     </div>

@@ -15,7 +15,7 @@ import { ContactsTableToolbarActions } from "./contacts-table-toolbar-actions";
 interface ContactsTableProps {
   contactsPromise: Promise<{ data: any; pageCount: number }>;
   // ContactsPromise: { data: any; pageCount: number };
-  actions?: DataTableRowAction<ContactListResponse>[];
+  actions?: DataTableRowAction<ContactList>[];
 }
 
 export function ContactsTable({ contactsPromise, actions }: ContactsTableProps) {
@@ -35,7 +35,7 @@ export function ContactsTable({ contactsPromise, actions }: ContactsTableProps) 
    * @prop {React.ReactNode} [icon] - An optional icon to display next to the label.
    * @prop {boolean} [withCount] - An optional boolean to display the count of the filter option.
    */
-  const filterFields: DataTableFilterField<ContactListResponse>[] = [
+  const filterFields: DataTableFilterField<ContactList>[] = [
     {
       label: "Ticket",
       value: "name",

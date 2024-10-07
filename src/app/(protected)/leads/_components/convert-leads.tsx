@@ -6,6 +6,7 @@ import { useForm, useWatch } from 'react-hook-form';
 import { useParams } from 'next/navigation';
 import { toast } from 'sonner';
 import { useState } from 'react';
+import { BookUser } from 'lucide-react';
 
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader } from "@/components/ui/card";
@@ -28,18 +29,21 @@ import { getBranches } from '@/actions/branch';
 import { convertLead } from '@/actions/lead';
 
 const ConvertSchema = z.object({
-  contactExists: z.boolean(),
+  leadsId: z.string().optional(),
+  contactExisting: z.boolean(),
   contact: z.union([
     z.string(),
     z.array(z.any()).transform((val) => val.length > 0 ? val[0].label : ""),
   ]),
-  opportunityExists: z.boolean(),
+  opportunityExisting: z.boolean(),
   opportunity: z.union([
     z.string(),
     z.array(z.any()).transform((val) => val.length > 0 ? val[0].label : ""),
   ]),
   branchCode: z.array(z.any()).transform((val) => val.length > 0 ? val[0].value : ""),
 });
+
+export type ConvertSchema = z.infer<typeof ConvertSchema>;
 
 export default function ConvertLeadsModal() {
   const [open, setOpen] = useState(false);
@@ -48,9 +52,10 @@ export default function ConvertLeadsModal() {
   const form = useForm({
     resolver: zodResolver(ConvertSchema),
     defaultValues: {
-      contactExists: true,
+      leadsId: id as string,
+      contactExisting: true,
       contact: "",
-      opportunityExists: true,
+      opportunityExisting: true,
       opportunity: "",
       branchCode: [],
     },
@@ -58,27 +63,18 @@ export default function ConvertLeadsModal() {
 
   const isContactExist = useWatch({
     control: form.control,
-    name: "contactExists",
+    name: "contactExisting",
   });
 
   const isOptyExist = useWatch({
     control: form.control,
-    name: "opportunityExists",
+    name: "opportunityExisting",
   });
 
   const onSubmit = async (data: z.infer<typeof ConvertSchema>) => {
-    const payload = {
-      contact_existing: data.contactExists,
-      opportunity_existing: data.opportunityExists,
-      branch_code: data.branchCode,
-      contact: data.contact,
-      opportunity: data.opportunity,
-      leads_id: id,
-    };
-
     try {
       setLoading(true);
-      await convertLead(payload);
+      await convertLead(data);
       setOpen(false);
       toast.success("Lead converted successfully");
     } catch (error) {
@@ -93,7 +89,10 @@ export default function ConvertLeadsModal() {
   return (
     <Dialog onOpenChange={setOpen} open={open}>
       <DialogTrigger asChild>
-        <Button className="w-full">Convert</Button>
+        <Button className="w-full">
+          <BookUser className="w-4 h-4 mr-2" />
+          Convert
+        </Button>
       </DialogTrigger>
       <DialogContent className="max-w-xl">
         <DialogHeader>
@@ -112,7 +111,7 @@ export default function ConvertLeadsModal() {
               <div className='p-2 space-y-2'>
                 <FormField
                   control={form.control}
-                  name="contactExists"
+                  name="contactExisting"
                   render={({ field }) => (
                     <FormItem>
                       <FormControl>
@@ -189,7 +188,7 @@ export default function ConvertLeadsModal() {
               <div className='p-2 space-y-2'>
                 <FormField
                   control={form.control}
-                  name="opportunityExists"
+                  name="opportunityExisting"
                   render={({ field }) => (
                     <FormItem>
                       <FormControl>

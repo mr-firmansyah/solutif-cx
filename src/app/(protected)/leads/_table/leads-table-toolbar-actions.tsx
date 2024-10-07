@@ -7,7 +7,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 interface LeadsTableToolbarActionsProps {
-  table?: Table<LeadsListResponse>;
+  table?: Table<LeadsList>;
 }
 
 export function LeadsTableToolbarActions({

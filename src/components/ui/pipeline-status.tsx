@@ -57,12 +57,14 @@ export function PipelineTrigger({ sequence, name, onClick }: PipelineTriggerProp
       <PipelineStart
         borderColor={sequence <= currentStep ? "#D2D6DC" : "#263238"}
         color={sequence <= currentStep ? "white" : "#ECEFF1"}
+        onClick={onClick}
         text={name}
       />
     ) : (
       <PipelineMiddle
         borderColor={sequence <= currentStep ? "#D2D6DC" : "#263238"}
         color={sequence <= currentStep ? "white" : "#ECEFF1"}
+        onClick={onClick}
         text={name}
       />
     )

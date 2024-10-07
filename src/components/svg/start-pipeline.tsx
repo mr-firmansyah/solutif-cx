@@ -5,6 +5,7 @@ interface PipelineFirstProps {
   height?: string;
   text?: string;
   textColor?: string;
+  onClick?: () => void;
 }
 
 const PipelineStart: React.FC<PipelineFirstProps> = ({
@@ -14,9 +15,10 @@ const PipelineStart: React.FC<PipelineFirstProps> = ({
   height = '60',
   text = '',
   textColor = 'black',
+  onClick,
 }) => {
   return (
-    <svg fill="none" height={height} viewBox="0 0 276 60" width={width} xmlns="http://www.w3.org/2000/svg">
+    <svg fill="none" height={height} onClick={onClick} viewBox="0 0 276 60" width={width} xmlns="http://www.w3.org/2000/svg">
       <g filter="url(#filter0_d_302_314)">
         <mask fill="white" id="path-1-inside-1_302_314">
           <path clip-rule="evenodd" d="M2 5C2 2.79086 3.79086 1 6 1H255.679C257.114 1 258.44 1.76914 259.152 3.01544L272.866 27.0154C273.569 28.2452 273.569 29.7548 272.866 30.9846L259.152 54.9846C258.44 56.2309 257.114 57 255.679 57H6C3.79086 57 2 55.2091 2 53V5Z"

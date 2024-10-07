@@ -26,7 +26,7 @@ interface AttachmentsList extends Timestamps {
 }
 
 type SearchParams = {
-  perPage: number;
+  per_page: number;
   page: number;
   dateFrom: string;
   dateTo: string;

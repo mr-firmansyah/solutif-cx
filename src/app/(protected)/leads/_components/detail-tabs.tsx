@@ -1,3 +1,4 @@
+import { FileUploadComponent } from "@/components/attachment/file-upload";
 import { LogComponent } from "@/components/log";
 import { TaskComponent } from "@/components/task";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -26,7 +27,7 @@ export function DetailTabs({ logs, tasks, attachments, activities }: DetailTabsP
         POST COMPONENT
       </TabsContent>
       <TabsContent value="attachments">
-        NO DESIGN YET
+        <FileUploadComponent />
       </TabsContent>
       <TabsContent value="log">
         <LogComponent logs={logs} />

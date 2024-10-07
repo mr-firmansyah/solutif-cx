@@ -7,6 +7,7 @@ interface PipelineMiddleProps {
   height?: string;
   text?: string;
   textColor?: string;
+  onClick?: () => void;
 }
 
 const PipelineMiddle: React.FC<PipelineMiddleProps> = ({
@@ -16,9 +17,10 @@ const PipelineMiddle: React.FC<PipelineMiddleProps> = ({
   height = '60',
   text = '',
   textColor = 'black',
+  onClick,
 }) => {
   return (
-    <svg fill="none" height={height} viewBox="0 0 274 60" width={width} xmlns="http://www.w3.org/2000/svg">
+    <svg fill="none" height={height} onClick={onClick} viewBox="0 0 274 60" width={width} xmlns="http://www.w3.org/2000/svg">
       <g filter="url(#filter0_d_302_305)">
         <mask fill="white" id="path-1-inside-1_302_305">
           <path

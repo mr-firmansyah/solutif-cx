@@ -1,4 +1,5 @@
 import NextAuth, { type NextAuthOptions } from "next-auth";
+import { cookies } from "next/headers";
 
 import authConfig from "@/config/auth.config";
 
@@ -10,9 +11,15 @@ export const authOptions: NextAuthOptions = {
   debug: process.env.NODE_ENV === "development",
   callbacks: {
     redirect: async ({ url, baseUrl }) => {
-      // eslint-disable-next-line no-console
-      // console.log("redirect", url, baseUrl);
-      return url.startsWith(baseUrl) ? url : baseUrl;
+      const tenant = cookies().get('tenant')?.value;
+
+      // Buat NEXTAUTH_URL dinamis berdasarkan tenant
+      const dynamicNextAuthUrl = tenant 
+        ? `http://${tenant}.localhost:3000`
+        : baseUrl;
+
+      return dynamicNextAuthUrl;
+      // return url.startsWith(baseUrl) ? url : baseUrl;
     },
     async session({ token, session }) {
       if (token.sub && session.user) {

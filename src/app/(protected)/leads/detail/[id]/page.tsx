@@ -12,6 +12,8 @@ import { ProfileSection } from "../../_components/detail-profile-section";
 import { CampaignSection } from "../../_components/detail-campaign-section";
 import { DetailTabs } from "../../_components/detail-tabs";
 import PipelineStatusLeads from "../../_components/pipeline-status-leads";
+import NewInformationSection from "../../_components/detail-new-info";
+import AddressSection from "../../_components/detail-address";
 
 // NOTE: I personally didn't know why this should be dynamic with ssr: false
 // but maybe it's because the parent component is server-rendered?
@@ -54,7 +56,7 @@ export default async function LeadsDetailPage({ params }: LeadsDetailPageProps) 
   // }
 
   return (
-    <Shell className="gap-4" label={ <AppBreadcrumb items={breadcrumb} /> }>
+    <Shell className="gap-4" label={<AppBreadcrumb items={breadcrumb} />}>
       <PipelineStatusLeads data={data.leads?.data} />
 
       <div className="flex flex-col md:flex-row gap-4">
@@ -64,8 +66,13 @@ export default async function LeadsDetailPage({ params }: LeadsDetailPageProps) 
         <CampaignSection className="w-full" data={data.leads?.data} />
       </div>
 
+      <div>
+        <h3 className="mb-2 ml-3 font-semibold">Overview</h3>
+        <AddressSection data={data.leads?.data} />
+      </div>
+      <NewInformationSection data={data.leads?.data} />
       <DetailTabs attachments={data.attachments} logs={data.logs} />
-      {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
+      {/* <pre>{JSON.stringify(data.leads, null, 2)}</pre> */}
     </Shell>
   );
 }

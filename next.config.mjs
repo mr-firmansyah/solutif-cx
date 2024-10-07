@@ -6,7 +6,15 @@ const nextConfig = {
       config.resolve.fallback.fs = false;
     }
     return config;
-  }
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 's3.solutif.co.id',
+      }
+    ]
+  },
 };
 
 export default nextConfig;

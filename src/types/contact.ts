@@ -1,4 +1,4 @@
-interface ContactListResponse extends Timestamps {
+interface ContactList extends Timestamps {
   id: string;
   emails: string[];
   contactNumbers: string[];

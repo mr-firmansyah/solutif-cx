@@ -2,12 +2,6 @@ import { format } from "date-fns";
 import { Megaphone } from "lucide-react";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"
 
 interface CampaignSectionProps {
   data: LeadsDetails | undefined;
@@ -27,7 +21,7 @@ export const CampaignSection = ({ data, className }: CampaignSectionProps) => {
           </div>
         </CardHeader>
         <CardContent>
-          <section className="grid grid-cols-2 gap-4 capitalize font-bold text-sm pb-4 border-b" id="campaign">
+          <section className="grid grid-cols-2 gap-4 capitalize font-bold text-sm" id="campaign">
             <div className="col-span-1 flex flex-col gap-2">
               <p>Kategori Campaign</p>
               <p className="font-normal text-muted-foreground">{data?.campaign?.category || "-"}</p>
@@ -53,26 +47,6 @@ export const CampaignSection = ({ data, className }: CampaignSectionProps) => {
               <p className="font-normal text-muted-foreground normal-case">{data?.campaign?.script || "-"}</p>
             </div>
           </section>
-
-          <Accordion collapsible type="single">
-            <AccordionItem value='additionalInfo'>
-              <AccordionTrigger>
-                <div className="flex items-center justify-between">
-                  <h2>Informasi Tambahan</h2>
-                </div>
-              </AccordionTrigger>
-              <AccordionContent>
-                <section className="grid grid-cols-2 gap-4" id="additional-info">
-                  {data?.additionalInformation ? Object.keys(data.additionalInformation).map((key) => (
-                    <div className="col-span-2 flex flex-col gap-2" key={key}>
-                      <p>{key.split("_").map((k) => k.charAt(0).toUpperCase() + k.slice(1)).join(" ")}</p>
-                      <p className="font-normal text-muted-foreground">{data.additionalInformation[key] || "-"}</p>
-                    </div>
-                  )) : "-"}
-                </section>
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
         </CardContent>
       </Card>
 

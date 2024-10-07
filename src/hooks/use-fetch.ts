@@ -19,7 +19,6 @@ export const useFetch = (tenant: string): KyInstance => {
     hooks: {
       beforeRequest: [
         async (request) => {
-          request.headers.set("Content-Type", "application/json");
           const session = await getServerSession(authOptions)
           const token = (session as Session & { accessToken?: string })?.accessToken;
           if (token) request.headers.set("Authorization", `Bearer ${token}`);

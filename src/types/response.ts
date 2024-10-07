@@ -46,16 +46,20 @@ interface LoginResponse {
 }
 
 type UserResponse = ApiResponse<LoginResponse>;
-type TicketsResponse = PaginatedApiResponse<TicketListResponse>;
-type ContactsResponse = PaginatedApiResponse<ContactListResponse>;
+type TicketsResponse = PaginatedApiResponse<TicketList>;
+type ContactsResponse = PaginatedApiResponse<ContactList>;
 
 type LeadsDetailsResponse = ApiResponse<LeadsDetails>;
-type LeadsResponse = PaginatedApiResponse<LeadsListResponse>;
+type LeadsResponse = PaginatedApiResponse<LeadsList>;
 
 type LogsResponse = PaginatedApiResponse<LogsList>;
 type AttachmentsResponse = PaginatedApiResponse<AttachmentsList>;
+type AttachmentsPostResponse = ApiResponse<AttachmentsList>;
 
 type PrioritiesResponse = PaginatedApiResponse<PriorityList>;
 type BranchesResponse = PaginatedApiResponse<BranchList>;
 
 type UsersResponse = PaginatedApiResponse<UserList>;
+
+type CampaignsResponse = PaginatedApiResponse<CampaignList>;
+type CampaignDetailsResponse = ApiResponse<CampaignDetails>;

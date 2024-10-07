@@ -10,7 +10,7 @@ export function TaskComponent() {
 
   return (
     <div className="flex divide-x-2">
-      <TaskCreateForm setDate={setSelectedDate} />
+      <TaskCreateForm data={null} setDate={setSelectedDate} />
 
       <div className="pl-2 w-full">
         <SchedulesComponent date={selectedDate} />

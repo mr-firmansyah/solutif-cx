@@ -1,4 +1,4 @@
-interface TicketListResponse extends Timestamps {
+interface TicketList extends Timestamps {
   assigneeData: string;
   ticketId: string;
   ticketCode: string;

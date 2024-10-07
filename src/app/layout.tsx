@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner"
 import SessionProviderWrapper from "@/provider/session-provider";
 import "./globals.css";
+import { AlertDialogProvider } from "@/provider/alert-dialog-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,10 +20,12 @@ export default async function RootLayout({
 }>) {
   return (
     <SessionProviderWrapper>
-      <html lang="en">
-        <body className={inter.className}>{children}</body>
-        <Toaster position="top-right" richColors />
-      </html>
+      <AlertDialogProvider>
+        <html lang="en">
+          <body className={inter.className}>{children}</body>
+          <Toaster position="top-right" richColors />
+        </html>
+      </AlertDialogProvider>
     </SessionProviderWrapper>
   );
 }

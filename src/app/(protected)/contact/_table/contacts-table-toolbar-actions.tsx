@@ -7,7 +7,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 interface ContactsTableToolbarActionsProps {
-  table?: Table<ContactListResponse>;
+  table?: Table<ContactList>;
 }
 
 export function ContactsTableToolbarActions({

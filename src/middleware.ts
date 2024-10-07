@@ -3,8 +3,6 @@ import { NextRequest, NextResponse } from "next/server";
 export async function middleware(request: NextRequest) {
   const host = request.headers.get("host") || "";
   const subdomain = host.split(".")[0];
-  // eslint-disable-next-line no-console
-  console.log(subdomain)
 
   if (!subdomain) {
     return new NextResponse("Not Found", { status: 404 });
