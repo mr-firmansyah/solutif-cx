@@ -1,7 +1,3 @@
 export default function AllCampaignPage() {
-  return (
-    <div>
-      Test All Campaign
-    </div>
-  );
+	return <div>Test All Campaign</div>;
 }

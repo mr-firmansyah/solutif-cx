@@ -1,16 +1,16 @@
-import * as z from "zod"
+import * as z from "zod";
 
 export const searchParamsSchema = z.object({
-  page: z.coerce.number().default(1),
-  per_page: z.coerce.number().default(5),
-  ticketCode: z.string().optional(),
-  dateFrom: z.string().optional(),
-  dateTo: z.string().optional(),
-})
+	page: z.coerce.number().default(1),
+	per_page: z.coerce.number().default(5),
+	ticketCode: z.string().optional(),
+	dateFrom: z.string().optional(),
+	dateTo: z.string().optional(),
+});
 
-export const getTicketsSchema = searchParamsSchema
+export const getTicketsSchema = searchParamsSchema;
 
-export type GetTicketsSchema = z.infer<typeof getTicketsSchema>
+export type GetTicketsSchema = z.infer<typeof getTicketsSchema>;
 
 // export const createTaskSchema = z.object({
 //   title: z.string(),
