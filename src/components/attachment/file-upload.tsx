@@ -51,7 +51,6 @@ export function FileUploadComponent() {
 
     try {
       const result = await onUpload(input.image)
-      console.log(result)
       
       form.reset()
       toast.success("File uploaded successfully")

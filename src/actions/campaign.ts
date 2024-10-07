@@ -12,7 +12,7 @@ const handleApiRequest = async <T>(request: Promise<Response>): Promise<T> => {
     const response = await request;
     return await response.json();
   } catch (error) {
-    console.error("API request failed:", error);
+    // console.error("API request failed:", error);
     throw error;
   }
 };

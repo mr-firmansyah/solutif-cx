@@ -24,12 +24,12 @@ export function useTaskForm<TSchema extends z.ZodType<any, any>>(options: {
     try {
       // NOTE: This should be replaced with the actual API call
       // eslint-disable-next-line no-console
-      console.log(data);
+      // console.log(data);
       // eslint-disable-next-line no-console
-      console.log("test");
+      // console.log("test");
       options.onSuccess?.();
     } catch (error) {
-      console.error(error);
+      // console.error(error);
     } finally {
       setLoading(false);
     }

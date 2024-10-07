@@ -39,7 +39,7 @@ export const useFetch = (tenant: string): KyInstance => {
         async (request, options, response) => {
           if (response.status === 401) {
             // eslint-disable-next-line no-console
-            console.log("Logging out due to 401");
+            // console.log("Logging out due to 401");
             // clear all cookies
           }
           return response;

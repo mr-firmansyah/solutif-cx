@@ -28,7 +28,7 @@ export const authenticateClient = async (state = '') => {
     // eslint-disable-next-line no-console
     // console.log('Genesys client authenticated');
   } catch (err) {
-    console.error('Failed to authenticate Genesys client:', err);
+    // console.error('Failed to authenticate Genesys client:', err);
     throw new Error('Authentication failed');
   }
 };

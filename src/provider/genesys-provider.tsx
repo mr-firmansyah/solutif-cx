@@ -10,7 +10,7 @@ const GenesysProvider = ({ children }: { children: React.ReactNode }) => {
       try {
         initializeGenesysClient();
         // eslint-disable-next-line no-console
-        console.log(getGenesysClient())
+        // console.log(getGenesysClient())
         const queryParameters = getQueryParameters();
         const state = computeState(queryParameters);
 
@@ -18,10 +18,10 @@ const GenesysProvider = ({ children }: { children: React.ReactNode }) => {
           return new client.UsersApi().getUsersMe({ 'expand': ['authorization'] })
         }).then((data) => {
           // eslint-disable-next-line no-console
-          console.log('Genesys user data:', data);
+          // console.log('Genesys user data:', data);
         })
       } catch (error) {
-        console.error('Genesys authentication failed:', error);
+        // console.error('Genesys authentication failed:', error);
       }
     };
 
